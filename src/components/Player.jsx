@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Player({initialName, symbol , isActive}) {
+export default function Player({initialName, symbol , isActive , onChangeName}) {
   // ?In order to change the player name in the input field we will use another useState 
   const [playerName , setPlayerName] = useState(initialName);
 
@@ -10,6 +10,10 @@ export default function Player({initialName, symbol , isActive}) {
     // setIsEditing(!isEditing);
     //* Instead use this to get the latest state value
     setIsEditing(editing => !editing)
+    
+    if(isEditing){
+      onChangeName(symbol , playerName)
+    }
   }
   //! Another function when the user changes its name
 function handleChange(e){
